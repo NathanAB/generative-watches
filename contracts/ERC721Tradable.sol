@@ -25,6 +25,7 @@ abstract contract ERC721Tradable is ContextMixin, ERC721Enumerable, NativeMetaTr
     using SafeMath for uint256;
 
     address proxyRegistryAddress;
+    address factoryContractAddress;
     uint256 private _currentTokenId = 0;
 
     constructor(
@@ -40,10 +41,16 @@ abstract contract ERC721Tradable is ContextMixin, ERC721Enumerable, NativeMetaTr
      * @dev Mints a token to an address with a tokenURI.
      * @param _to address of the future owner of the token
      */
-    function mintTo(address _to) public onlyOwner {
+    function mintTo(address _to) public {
+        assert(_msgSender() == owner()  || _msgSender() == factoryContractAddress);
         uint256 newTokenId = _getNextTokenId();
         _mint(_to, newTokenId);
         _incrementTokenId();
+    }
+    
+
+    function setFactoryContractAddress(address _factoryContractAddress) public {
+        factoryContractAddress = _factoryContractAddress;
     }
 
     /**
@@ -64,7 +71,7 @@ abstract contract ERC721Tradable is ContextMixin, ERC721Enumerable, NativeMetaTr
     function baseTokenURI() virtual public pure returns (string memory);
 
     function tokenURI(uint256 _tokenId) override public pure returns (string memory) {
-        return string(abi.encodePacked(baseTokenURI(), Strings.toString(_tokenId)));
+        return string(abi.encodePacked(baseTokenURI(), Strings.toString(_tokenId), '.json'));
     }
 
     /**

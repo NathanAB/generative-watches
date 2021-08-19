@@ -20,26 +20,23 @@ contract CreatureAccessoryFactory is FactoryERC1155, Ownable, ReentrancyGuard {
     address public proxyRegistryAddress;
     address public nftAddress;
     address public lootBoxAddress;
-    string
-        internal constant baseMetadataURI = "https://creatures-api.opensea.io/api/";
-    uint256 constant UINT256_MAX = ~uint256(0);
+    string internal constant baseMetadataURI = "ipfs://QmZiUAN7TLFvsUfQ3AE62gRbGkar76yfSh4hM3wUjTwGnU";
+    // uint256 constant UINT256_MAX = ~uint256(0);
 
     /*
      * Optionally set this to a small integer to enforce limited existence per option/token ID
      * (Otherwise rely on sell orders on OpenSea, which can only be made by the factory owner.)
      */
-    uint256 constant SUPPLY_PER_TOKEN_ID = UINT256_MAX;
+    uint256 constant SUPPLY_PER_TOKEN_ID = 100;
 
     // The number of creature accessories (not creature accessory rarity classes!)
-    uint256 constant NUM_ITEM_OPTIONS = 6;
+    uint256 constant NUM_ITEM_OPTIONS = 1;
 
     /*
      * Three different options for minting CreatureAccessories (basic, premium, and gold).
      */
     uint256 public constant BASIC_LOOTBOX = NUM_ITEM_OPTIONS + 0;
-    uint256 public constant PREMIUM_LOOTBOX = NUM_ITEM_OPTIONS + 1;
-    uint256 public constant GOLD_LOOTBOX = NUM_ITEM_OPTIONS + 2;
-    uint256 public constant NUM_LOOTBOX_OPTIONS = 3;
+    uint256 public constant NUM_LOOTBOX_OPTIONS = 1;
 
     uint256 public constant NUM_OPTIONS = NUM_ITEM_OPTIONS +
         NUM_LOOTBOX_OPTIONS;
@@ -59,11 +56,11 @@ contract CreatureAccessoryFactory is FactoryERC1155, Ownable, ReentrancyGuard {
     /////
 
     function name() override external pure returns (string memory) {
-        return "OpenSea Creature Accessory Pre-Sale";
+        return "GW Pre-Sale";
     }
 
     function symbol() override external pure returns (string memory) {
-        return "OSCAP";
+        return "GWP";
     }
 
     function supportsFactoryInterface() override external pure returns (bool) {
@@ -80,13 +77,7 @@ contract CreatureAccessoryFactory is FactoryERC1155, Ownable, ReentrancyGuard {
 
     function uri(uint256 _optionId) override external pure returns (string memory) {
         return
-            string(
-                abi.encodePacked(
-                    baseMetadataURI,
-                    "factory/",
-                    Strings.toString(_optionId)
-                    )
-                );
+            string(abi.encodePacked(baseMetadataURI));
     }
 
     function canMint(uint256 _optionId, uint256 _amount)
@@ -123,7 +114,7 @@ contract CreatureAccessoryFactory is FactoryERC1155, Ownable, ReentrancyGuard {
         if (_option < NUM_ITEM_OPTIONS) {
             require(
                 _isOwnerOrProxy(_msgSender()) || _msgSender() == lootBoxAddress,
-                "Caller cannot mint accessories"
+                "Caller cannot mint watches"
             );
             // Items are pre-mined (by the owner), so transfer them (We are an
             // operator for the owner).

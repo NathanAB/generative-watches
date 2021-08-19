@@ -10,14 +10,14 @@ import "./ERC721Tradable.sol";
  */
 contract Creature is ERC721Tradable {
     constructor(address _proxyRegistryAddress)
-        ERC721Tradable("Creature", "OSC", _proxyRegistryAddress)
+        ERC721Tradable("Generative Watches", "GW", _proxyRegistryAddress)
     {}
 
     function baseTokenURI() override public pure returns (string memory) {
-        return "https://creatures-api.opensea.io/api/creature/";
+        return "ipfs://QmeNPC6Wrtq8SHpu96VuF8m6Rjd3jMbyRvbhQcfxBPi6uT/";
     }
 
     function contractURI() public pure returns (string memory) {
-        return "https://creatures-api.opensea.io/contract/opensea-creatures";
+        return "ipfs://QmWVqv7R7RS8Wn12h1u2qNnu6voT6rPK1UMyT4shrgLDbR";
     }
 }
