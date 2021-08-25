@@ -26,7 +26,7 @@ abstract contract ERC721Tradable is ContextMixin, ERC721Enumerable, NativeMetaTr
 
     address proxyRegistryAddress;
     address factoryContractAddress;
-    uint256 private _currentTokenId = 0;
+    uint256 private _currentTokenId = 103;
 
     constructor(
         string memory _name,

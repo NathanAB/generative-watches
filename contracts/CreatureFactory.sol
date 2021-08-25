@@ -92,6 +92,10 @@ contract CreatureFactory is FactoryERC721, Ownable {
         mint(_tokenId, _to);
     }
 
+    function canMint(uint256 _optionId) override external view returns (bool) {
+        return true;
+    }
+
     /**
      * Hack to get things to work automatically on OpenSea.
      * Use isApprovedForAll so the frontend doesn't have to worry about different method names.

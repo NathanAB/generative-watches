@@ -71,28 +71,39 @@ async function main() {
   try {
   // Example: many fixed price auctions for a factory option.
   console.log("Creating fixed price auctions...");
-  const fixedSellOrders = await seaport.createFactorySellOrders({
-    assets: [
-      {
-        tokenId: FIXED_PRICE_OPTION_ID,
-        tokenAddress: FACTORY_CONTRACT_ADDRESS,
-      },
-    ],
-    accountAddress: OWNER_ADDRESS,
-    startAmount: FIXED_PRICE,
-    numberOfOrders: 1,
-    
-  });
+  const MAX_ORDERS = 10;
+  let orders = MAX_ORDERS;
+  const createSell = async () => {
+    console.log('Creating sell order', MAX_ORDERS - orders + 1)
+
+    if (orders === 0) {
+      process.exit()
+    }
+    await seaport.createFactorySellOrders({
+      assets: [
+        {
+          tokenId: FIXED_PRICE_OPTION_ID,
+          tokenAddress: FACTORY_CONTRACT_ADDRESS,
+        },
+      ],
+      accountAddress: OWNER_ADDRESS,
+      startAmount: FIXED_PRICE,
+      numberOfOrders: 1,
+    });
+    orders -= 1;
+    console.log('Success!')
+    setTimeout(() => {
+      createSell();
+    }, 1000);
+  }
+  createSell();
   // console.log(
   //   `Successfully made ${fixedSellOrders.length} fixed-price sell orders! ${fixedSellOrders[0].asset.openseaLink}\n`
   // );
-  console.log(JSON.stringify(fixedSellOrders, null, 2))
-  console.log(fixedSellOrders);
   } catch(err) {
     console.error(err);
     process.exit(1);
   }
-  process.exit();
 
   // Example: many fixed price auctions for multiple factory options.
   // console.log("Creating fixed price auctions...");

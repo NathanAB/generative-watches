@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "ganache-cli": "ganache-cli -d -p 7545 --gasLimit=10000000",
-    "test": "DEPLOY_ALL=1 truffle test"
+    "test": "DEPLOY_ALL=1 truffle test",
+    "migrate-rinkeby": "truffle migrate --network rinkeby --reset",
+    "verify-rinkeby": "truffle run verify Creature CreatureFactory --network rinkeby"
   },
   "repository": {
     "type": "git",

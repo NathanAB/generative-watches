@@ -37,14 +37,14 @@ module.exports = async (deployer, network, addresses) => {
   }
 
   if (DEPLOY_CREATURES) {
-    await deployer.deploy(Creature, proxyRegistryAddress, {gas: 5000000});
+    await deployer.deploy(Creature, proxyRegistryAddress, {gas: 8000000});
   }
 
   if (DEPLOY_CREATURES_SALE) {
-    await deployer.deploy(CreatureFactory, proxyRegistryAddress, Creature.address, {gas: 7000000});
+    await deployer.deploy(CreatureFactory, proxyRegistryAddress, Creature.address, {gas: 10000000});
     const creature = await Creature.deployed();
     creature.setFactoryContractAddress(CreatureFactory.address)
-
+    // creature.mintLegacy("0x1c06DdA156052414eEbF18923021240b201Fc369")
     // await creature.transferOwnership(CreatureFactory.address);
     // Run this afterwards
   }

@@ -10,8 +10,8 @@ csv.parse(csvFile, (err, data) => {
     return;
   }
 
-  for (let i = 48; i < 55; i += 1) {
-    const tokenNum = i - 47;
+  for (let i = 1; i < 100; i += 1) {
+    const tokenNum = i;
 
 
     const token = {
