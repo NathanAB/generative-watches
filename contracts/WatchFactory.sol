@@ -5,9 +5,9 @@ pragma solidity ^0.8.0;
 import "openzeppelin-solidity/contracts/access/Ownable.sol";
 import "openzeppelin-solidity/contracts/utils/Strings.sol";
 import "./IFactoryERC721.sol";
-import "./Creature.sol";
+import "./Watch.sol";
 
-contract CreatureFactory is FactoryERC721, Ownable {
+contract WatchFactory is FactoryERC721, Ownable {
     using Strings for string;
 
     event Transfer(
@@ -20,11 +20,8 @@ contract CreatureFactory is FactoryERC721, Ownable {
     address public nftAddress;
     string public baseURI = "ipfs://Qmdgf4obdb27NiS34K1LZWhWYT4P7sy7d3Nzhfeo7ZHCiJ";
 
-    /*
-     * Three different options for minting Creatures (basic, premium, and gold).
-     */
     uint256 NUM_OPTIONS = 1;
-    uint256 SINGLE_CREATURE_OPTION = 0;
+    uint256 SINGLE_WATCH_OPTIONS = 0;
 
     constructor(address _proxyRegistryAddress, address _nftAddress) {
         proxyRegistryAddress = _proxyRegistryAddress;
@@ -70,9 +67,9 @@ contract CreatureFactory is FactoryERC721, Ownable {
                 // || _msgSender() == lootBoxNftAddress
         );
 
-        Creature openSeaCreature = Creature(nftAddress);
-        if (_optionId == SINGLE_CREATURE_OPTION) {
-            openSeaCreature.mintTo(_toAddress);
+        Watch watch = Watch(nftAddress);
+        if (_optionId == SINGLE_WATCH_OPTIONS) {
+            watch.mintTo(_toAddress);
         } 
     }
 

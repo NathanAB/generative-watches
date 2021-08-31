@@ -5,12 +5,12 @@ pragma solidity ^0.8.0;
 import "./ERC721Tradable.sol";
 
 /**
- * @title Creature
- * Creature - a contract for my non-fungible creatures.
+ * @title Watch
+ * Watch - a contract for my non-fungible wtches.
  */
-contract Creature is ERC721Tradable {
+contract Watch is ERC721Tradable {
     constructor(address _proxyRegistryAddress)
-        ERC721Tradable("Generative Watches", "GW", _proxyRegistryAddress)
+        ERC721Tradable("Generative Watches", "GENWATCH", _proxyRegistryAddress)
     {}
 
     function baseTokenURI() override public pure returns (string memory) {
