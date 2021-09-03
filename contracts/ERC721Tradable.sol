@@ -27,7 +27,7 @@ abstract contract ERC721Tradable is ContextMixin, ERC721Enumerable, ERC721Burnab
 
     address proxyRegistryAddress;
     address factoryContractAddress;
-    uint256 private _currentTokenId = 103;
+    uint256 private _currentTokenId = 100;
 
     constructor(
         string memory _name,

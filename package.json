@@ -1,24 +1,16 @@
 {
-  "name": "opensea-creatures",
+  "name": "generative-watches",
   "version": "1.0.0",
   "description": "OpenSea's smart contracts, including ERC721 templates, factories, and the storefront builder.",
   "main": "index.js",
   "scripts": {
     "ganache-cli": "ganache-cli -d -p 7545 --gasLimit=10000000",
     "test": "DEPLOY_ALL=1 truffle test",
-    "migrate-rinkeby": "truffle migrate --network rinkeby --reset",
-    "verify-rinkeby": "truffle run verify Creature CreatureFactory --network rinkeby"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ProjectOpenSea/opensea-creatures.git"
+    "migrate-rinkeby": "truffle migrate --network rinkeby",
+    "verify-rinkeby": "truffle run verify Watch --network rinkeby"
   },
   "author": "support@opensea.io",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ProjectOpenSea/opensea-creatures/issues"
-  },
-  "homepage": "https://github.com/ProjectOpenSea/opensea-creatures#readme",
   "dependencies": {
     "@0x/subproviders": "^6.4.1",
     "csv": "^5.5.0",

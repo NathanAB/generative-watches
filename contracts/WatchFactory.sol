@@ -18,7 +18,9 @@ contract WatchFactory is FactoryERC721, Ownable {
 
     address public proxyRegistryAddress;
     address public nftAddress;
-    string public baseURI = "ipfs://Qmdgf4obdb27NiS34K1LZWhWYT4P7sy7d3Nzhfeo7ZHCiJ";
+
+    // TODO: Update
+    string public baseURI = "https://tokens.generativewatches.com/extra/hidewatch00.jpg";
 
     uint256 NUM_OPTIONS = 1;
     uint256 SINGLE_WATCH_OPTIONS = 0;
@@ -31,11 +33,11 @@ contract WatchFactory is FactoryERC721, Ownable {
     }
 
     function name() override external pure returns (string memory) {
-        return "Generative Watches Crowdsale";
+        return "Gen Watch Crowd Sale";
     }
 
     function symbol() override external pure returns (string memory) {
-        return "GWC";
+        return "GWCS";
     }
 
     function supportsFactoryInterface() override public pure returns (bool) {
@@ -123,5 +125,9 @@ contract WatchFactory is FactoryERC721, Ownable {
      */
     function ownerOf(uint256 _tokenId) public view returns (address _owner) {
         return owner();
+    }
+
+    function contractURI() public pure returns (string memory) {
+        return "https://tokens.generativewatches.com/factory-contract.json";
     }
 }

@@ -10,15 +10,15 @@ import "./ERC721Tradable.sol";
  */
 contract Watch is ERC721Tradable {
     constructor(address _proxyRegistryAddress)
-        ERC721Tradable("Generative Watches", "GENWATCH", _proxyRegistryAddress)
+        ERC721Tradable("Gen Watch", "GW", _proxyRegistryAddress)
     {}
 
     function baseTokenURI() override public pure returns (string memory) {
-        return "ipfs://QmeNPC6Wrtq8SHpu96VuF8m6Rjd3jMbyRvbhQcfxBPi6uT/";
+        return "https://tokens.generativewatches.com/tokens/";
     }
 
     function contractURI() public pure returns (string memory) {
-        return "ipfs://QmWVqv7R7RS8Wn12h1u2qNnu6voT6rPK1UMyT4shrgLDbR";
+        return "https://tokens.generativewatches.com/contract.json";
     }
 
     function bulkMint(address toAddress, uint256 fromTokenId, uint256 toTokenId) public onlyOwner {
